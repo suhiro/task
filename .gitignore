@@ -12,3 +12,4 @@ yarn-error.log
 .editorconfig
 .env.example
 *.xml
+.phpintel/index
