@@ -17,7 +17,7 @@ class CreateDeviceLogsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('dsid');
             $table->datetime('start');
-            $table->datetime('end');
+            $table->datetime('end')->nullable();
             $table->timestamps();
         });
     }

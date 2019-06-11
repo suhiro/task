@@ -18,6 +18,7 @@ class CreateDevicesTable extends Migration
             $table->unsignedInteger('dsid')->unique();
             $table->unsignedInteger('parent_id');
             $table->string('name');
+            $table->boolean('terminal')->default(false);
             $table->string('description')->nullable();
             $table->timestamps();
         });

@@ -33,7 +33,9 @@ class Device extends Model
     				self::syncDevices($device->id);
     			}
 
-    		}
+    		} elseif($res->message === 'Success' && !isset($res->data->children)){
+                self::updateOrCreate(['dsid' => $res->data->id],['name' => $res->data->name,'terminal' => true]);
+            }
 
     	} else {
     		$res = self::tree();
@@ -64,5 +66,10 @@ class Device extends Model
         } else {
             return $res->getStatusCode();
         }   
+    }
+
+    public function scopeTerminal($query)
+    {
+        return $query->where('terminal',true);
     }
 }
