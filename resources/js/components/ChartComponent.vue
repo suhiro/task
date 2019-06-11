@@ -27,21 +27,21 @@ colorSet.saturation = 0.4;
 
 chart.data = [
   {
-    name: "Device 1",
-    fromDate: "2018-01-01 08:00",
-    toDate: "2018-01-01 08:05",
+    dsid: "Device 1",
+    start: "2018-01-01 08:00",
+    end: "2018-01-01 08:05",
   
   },
   {
-    name: "Device 1",
-    fromDate: "2018-01-01 12:00",
-    toDate: "2018-01-01 15:00",
+    dsid: "Device 1",
+    start: "2018-01-01 12:00",
+    end: "2018-01-01 15:00",
   
   },
   {
-    name: "Device 1",
-    fromDate: "2018-01-01 15:30",
-    toDate: "2018-01-01 21:30",
+    dsid: "Device 1",
+    start: "2018-01-01 15:30",
+    end: "2018-01-01 21:30",
   
   },
 
@@ -50,7 +50,7 @@ chart.data = [
   chart.data = this.data;
 
   var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
-  categoryAxis.dataFields.category = "fp_id";
+  categoryAxis.dataFields.category = "dsid";
   categoryAxis.renderer.grid.template.location = 0;
   categoryAxis.renderer.inversed = true;
 
@@ -68,7 +68,7 @@ chart.data = [
 
   series1.dataFields.openDateX = "start";
   series1.dataFields.dateX = "end";
-  series1.dataFields.categoryY = "fp_id";
+  series1.dataFields.categoryY = "dsid";
   series1.columns.template.propertyFields.fill = "color"; // get color from data
   series1.columns.template.propertyFields.stroke = "color";
   series1.columns.template.strokeOpacity = 1;

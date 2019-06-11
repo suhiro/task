@@ -18,7 +18,7 @@ class DeviceController extends Controller
     }
     public function logs(Device $device)
     {
-        $data = $device->logs;
+        $data = $device->logs->where('end','!=',null);
         
         return view('device.data',compact('data'));
     }
