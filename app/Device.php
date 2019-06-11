@@ -17,6 +17,10 @@ class Device extends Model
     {
     	return $this->belongsTo(Device::class,'parent_id','dsid');
     }
+    public function logs()
+    {
+        return $this->hasMany(DeviceLog::class,'dsid');
+    }
 
 
     public static function syncDevices($parentId = null)

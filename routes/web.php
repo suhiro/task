@@ -21,3 +21,5 @@ Route::post('/upload','UploadController@upload')->name('upload.file');
 
 Route::get('device/tree','DeviceController@index')->name('device.tree');
 Route::get('devices/sync','DeviceController@sync')->name('device.sync');
+
+Route::get('device/{device}/logs','DeviceController@logs');

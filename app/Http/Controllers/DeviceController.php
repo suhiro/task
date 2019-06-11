@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Account;
 use App\Device;
+use App\DeviceLog;
 use Illuminate\Http\Request;
 
 class DeviceController extends Controller
@@ -14,6 +15,12 @@ class DeviceController extends Controller
         $account = Account::first();
         $devices = $account->devices;
         return view('device.index',compact('devices'));
+    }
+    public function logs(Device $device)
+    {
+        $data = $device->logs;
+        
+        return view('device.data',compact('data'));
     }
 
     public function create()
