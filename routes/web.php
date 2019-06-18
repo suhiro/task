@@ -23,3 +23,5 @@ Route::get('device/tree','DeviceController@index')->name('device.tree');
 Route::get('devices/sync','DeviceController@sync')->name('device.sync');
 
 Route::get('device/{device}/logs','DeviceController@logs');
+
+Route::post('api/wechat/login','WechatController@login');
