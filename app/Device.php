@@ -53,7 +53,7 @@ class Device extends Model
 
     public static function tree($dsid = null){
         $client = new \GuzzleHttp\Client();
-        $uri = 'https://auth.getshiftworx.com/app/api/v1/datasource/tree'; 
+        $uri = 'https://api.getshiftworx.com/v1/datasource/tree'; 
         if($dsid){
         	$uri .= "?dsid=$dsid";
         }

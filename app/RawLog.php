@@ -11,7 +11,7 @@ class RawLog extends Model
 
     public static function api_activity($dsid, $start,$end, $minActivityLimit = null, $minInactivityLimit = null){
         $client = new \GuzzleHttp\Client();
-        $uri = 'https://auth.getshiftworx.com/app/api/v1/datasource/activity'; 
+        $uri = 'https://api.getshiftworx.com/v1/datasource/activity'; 
         
         $uri .= "?dsid=$dsid";
         $uri .= "&start_time=$start";
