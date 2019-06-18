@@ -12,4 +12,8 @@ class WechatController extends Controller
     	$login_code = $request->login_code;
     	return $request->all();
     }
+    public function get_login()
+    {
+    	return 'get login';
+    }
 }
