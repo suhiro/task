@@ -27,7 +27,7 @@ class ImportLogs extends Command
         $accounts = Account::get();
 
         $toTimestamp = now()->timestamp;
-        $fromTimestamp = now()->subDay()->timestamp;
+        // $fromTimestamp = now()->subDay()->timestamp;
         $minActivityLimit = 60;
         $minInactivityLimit = 60;
         foreach($accounts as $account)
@@ -41,8 +41,16 @@ class ImportLogs extends Command
                     foreach($device->children as $terminal)
                     {
                         $this->info("import data for terminal device: $terminal->dsid $terminal->name");
+
+                        $lastLog = RawLog::where('dsid',$terminal->dsid)->orderBy('time','desc')->first();
+                        if($lastLog){
+                            $fromTimestamp = $lastLog->time + 1;
+                        } else {
+                            $fromTimestamp = now()->subDay()->timestamp;
+                        }
                         RawLog::api_activity($terminal->dsid,$fromTimestamp,$toTimestamp,$minActivityLimit,$minInactivityLimit);
                         $this->processData($terminal->dsid,$fromTimestamp);
+                        
                     }
                 }
                 
