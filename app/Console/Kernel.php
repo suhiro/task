@@ -24,8 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('import:logs')
-                 ->daily();
+        $schedule->command('import:logs')->daily();
+        $schedule->command('test:scheduler')->everryMinute();
     }
 
     /**

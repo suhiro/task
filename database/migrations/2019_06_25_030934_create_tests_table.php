@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeviceLogsTable extends Migration
+class CreateTestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateDeviceLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('device_logs', function (Blueprint $table) {
+        Schema::create('tests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('dsid');
-            $table->datetime('start');
-            $table->datetime('end')->nullable();
-            $table->boolean('on');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -30,7 +27,6 @@ class CreateDeviceLogsTable extends Migration
      */
     public function down()
     {
-       
-        Schema::dropIfExists('device_logs');
+        Schema::dropIfExists('tests');
     }
 }
