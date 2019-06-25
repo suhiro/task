@@ -60,9 +60,16 @@ class ImportLogs extends Command
         foreach($logs as $log)
         {
             if($log->state){
+                if($currentLog){
+                    $currentLog->end = \Carbon\Carbon::parse($log->time)->toDatetimeString();
+                    $currentLog->save();
+                }
                 $currentLog = DeviceLog::create([
                                 'dsid' => $log->dsid,
                                 'start' => \Carbon\Carbon::parse($log->time)->toDatetimeString(),
+                                'on' => true,
+                                'min_activity_limit' => $log->min_activity_limit,
+                                'min_inactivity_limit' => $log->min_inactivity_limit,
                                 // 'end' => \Carbon\Carbon::parse($log->time)->toDatetimeString(),
                             ]);
             } else {
@@ -70,6 +77,13 @@ class ImportLogs extends Command
                     $currentLog->end = \Carbon\Carbon::parse($log->time)->toDatetimeString();
                     $currentLog->save();
                 }
+                $currentLog = DeviceLog::create([
+                    'dsid' => $log->dsid,
+                    'start' => \Carbon\Carbon::parse($log->time)->toDatetimeString(),
+                    'on' => false,
+                    'min_activity_limit' => $log->min_activity_limit,
+                    'min_inactivity_limit' => $log->min_inactivity_limit,
+                ]);
                 
             }
             

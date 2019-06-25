@@ -19,6 +19,8 @@ class CreateDeviceLogsTable extends Migration
             $table->datetime('start');
             $table->datetime('end')->nullable();
             $table->boolean('on');
+            $table->unsignedSmallInteger('min_activity_limit')->nullable();
+            $table->unsignedSmallInteger('min_inactivity_limit')->nullable();
             $table->timestamps();
         });
     }
