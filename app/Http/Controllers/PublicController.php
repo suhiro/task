@@ -10,7 +10,7 @@ class PublicController extends Controller
     public function index()
 	{
 
-		$data = DeviceLog::all();
+		$data = DeviceLog::whereDate('start',now()->toDateString())->get();
 		
     	return view('public.index',compact('data'));
     }
