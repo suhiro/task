@@ -24,6 +24,7 @@ import 'flatpickr/dist/flatpickr.css';
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('chart-component', require('./components/ChartComponent.vue').default);
 Vue.component('flat-pickr', require('vue-flatpickr-component'));
+Vue.component('chart2-component', require('./components/Chart2Component.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

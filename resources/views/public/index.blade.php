@@ -10,23 +10,24 @@
 	</div>
 </div>
 
-<chart-component :data="deviceData"></chart-component>
+<chart-component :data="log_data"></chart-component>
+
 
 <div>
-	@{{ deviceData }}
+
 </div>
 
 @endsection
 
 @section('initScript')
 <script>
-	console.log('this is from initScript')
+
 
 	window.vueMixin = {
 		data(){
 			return {
 				pickrDate:'{{now()->toDateString()}}',
-				deviceData:@json($data),
+				log_data:@json($data),
 			}
 		},
 		methods:{
@@ -40,7 +41,7 @@
 			}
 		},
 		mounted(){
-			console.log('moutned')
+            console.log('this is from initScript')
 		}
 	}
 </script>
