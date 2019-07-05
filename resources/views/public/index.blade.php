@@ -25,7 +25,7 @@
 	window.vueMixin = {
 		data(){
 			return {
-				pickrDate:'2019-07-04',
+				pickrDate:'{{now()->toDateString()}}',
 				deviceData:@json($data),
 			}
 		},

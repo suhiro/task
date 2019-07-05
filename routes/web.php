@@ -29,7 +29,7 @@ Route::get('api/wechat/login','WechatController@get_login');
 
 
 
-Route::namespace('Api')->group(function () {
+Route::namespace('API')->group(function () {
 
 	Route::post('/api/ds/logs/fetch','DeviceLogController@fetch');
 
