@@ -10,6 +10,9 @@ window.Vue = require('vue');
 
 import 'flatpickr/dist/flatpickr.css';
 
+import moment from "vue-moment";
+Vue.use(moment);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
