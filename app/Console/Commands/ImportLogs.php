@@ -46,7 +46,7 @@ class ImportLogs extends Command
                         if($lastLog){
                             $fromTimestamp = $lastLog->time + 1;
                         } else {
-                            $fromTimestamp = now()->subDay()->timestamp;
+                            $fromTimestamp = now()->subDays(30)->timestamp;
                         }
                         RawLog::api_activity($terminal->dsid,$fromTimestamp,$toTimestamp,$minActivityLimit,$minInactivityLimit);
                         $this->processData($terminal->dsid,$fromTimestamp);
@@ -94,7 +94,10 @@ class ImportLogs extends Command
                 ]);
                 
             }
-            
+        }
+        if($currentLog){
+            $currentLog->end = $currentLog->start;
+            $currentLog->save();
         }
     }
 }
