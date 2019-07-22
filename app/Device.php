@@ -8,6 +8,7 @@ class Device extends Model
 {
     protected $guarded = [];
     protected $primaryKey = 'dsid';
+    protected $appends = ['full_name'];
 
     public function children()
     {
@@ -20,6 +21,17 @@ class Device extends Model
     public function logs()
     {
         return $this->hasMany(DeviceLog::class,'dsid');
+    }
+
+    public function getFullNameAttribute()
+    {
+//        return 'full name';
+        return $this->parent? $this->parent->name .' '.$this->name.' ('.$this->dsid.')': $this->name;
+    }
+
+    public function getCustomAttribute()
+    {
+        return 'custom';
     }
 
 

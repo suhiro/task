@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DeviceLog;
+use App\Device;
 
 class DeviceLogController extends Controller
 {
@@ -65,7 +66,13 @@ class DeviceLogController extends Controller
 
     public function fetch(Request $request)
     {
-        $logs = DeviceLog::whereDate('start',$request->date)->get();
-        return $logs;
+        $logs = DeviceLog::where('dsid',$request->dsid)->whereDate('start',$request->date)->get();
+        $device = Device::find($request->dsid);
+        return [
+            'success' => true,
+            'data' => $logs,
+            'device' => $device,
+            'requeset' => $request->all(),
+        ];
     }
 }

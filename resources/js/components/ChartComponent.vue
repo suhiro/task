@@ -1,11 +1,16 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-3">
-
-        <flat-pickr v-model="pickrDate" @on-change="updateDate" class="form-control" placeholder="Select date"></flat-pickr>
-
+    <div class="row justify-content-between">
+      <div class="col-5">
+        <select class="custom-select" v-model="selectedDevice" @change="updateChart">
+          <option v-for="device in devices" :value="device.dsid" v-text="device.full_name"></option>
+        </select>
       </div>
+
+      <div class="col-3">
+        <flat-pickr v-model="pickrDate" class="form-control bg-white" placeholder="Select date"></flat-pickr>
+      </div>
+
     </div>
     <div class="chart" ref="chartdiv">
     </div>
@@ -24,23 +29,27 @@ am4core.useTheme(am4themes_animated);
 
 export default {
   name: 'chart-component',
-  props: ['data'],
+  props: ['date','dsid','devices'],
     data() {
       return {
           logs:this.data,
-          pickrDate: Vue.moment().format('YYYY-MM-DD'),
-        chart: null,
-        dateAxis: null,
+          pickrDate: this.date,
+          chart: null,
+          dateAxis: null,
+          deviceName:'',
+          selectedDevice:this.dsid,
       }
 
     },
   methods:{
-    updateDate(selectedDates,dateStr,instance){
+    updateChart(){
       axios.post('/api/ds/logs/fetch',{
-        date: dateStr
+        date: this.pickrDate,
+        dsid: this.selectedDevice,
       }).then(res => {
         console.log(res.data)
-        this.logs = res.data;
+        this.logs = res.data.data;
+        this.deviceName = res.data.device.full_name;
         this.processData();
         this.dateAxis.max = Vue.moment(this.pickrDate).format('X')
         this.chart.data = this.logs;
@@ -56,10 +65,16 @@ export default {
       });
     }
   },
+  watch:{
+    pickrDate(newVal,oldVal){
+      this.updateChart();
+    }
+  },
   mounted() {
-    this.processData();
+    // this.processData();
 
-    console.log(this.logs)
+    // console.log(this.logs)
+    this.updateChart();
 
     this.chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
     this.chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
@@ -116,6 +131,6 @@ export default {
 <style scoped>
 .chart {
   width: 100%;
-  height: 200px;
+  height: 150px;
 }
 </style>
