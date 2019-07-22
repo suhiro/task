@@ -2,9 +2,7 @@
 @section('content')
 
 
-
-
-<chart-component :data="log_data"></chart-component>
+<chart-component :date="pickrDate" :dsid="12522" :devices='@json($devices)'></chart-component>
 
 
 <div>
@@ -20,12 +18,16 @@
 	window.vueMixin = {
 		data(){
 			return {
-
-				log_data:@json($data),
+				pickrDate: Vue.moment().format('YYYY-MM-DD'),
+				{{--log_data:@json($data),--}}
 			}
 		},
 		methods:{
-
+		},
+		watch:{
+			pickrDate(newVal, oldVal){
+				console.log(this.pickrDate);
+			}
 		},
 		mounted(){
             console.log('this is from initScript')
