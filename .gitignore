@@ -20,3 +20,4 @@ storage/.DS_Store
 public/css/app.css
 ./phpintel/
 .idea
+public/js/app.js
