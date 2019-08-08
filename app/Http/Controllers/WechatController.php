@@ -14,6 +14,7 @@ class WechatController extends Controller
     }
     public function get_login()
     {
+        return request()->all();
     	return 'get login';
     }
 }
