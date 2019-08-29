@@ -14,7 +14,22 @@ class WechatController extends Controller
     }
     public function get_login()
     {
-        return request()->all();
-    	return 'get login';
+        
+        // return request()->all();
+
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://api.weixin.qq.com/sns/jscode2session?',
+            [
+                'query' => [
+                    'appid' => env('WECHAT_APP_ID'),
+                    'secret'=> env('WECHAT_SECRET'),
+                    'js_code' => request()->login_code,
+                ],
+            ]);
+        if($response->getStatusCode() == 200){
+            
+        }
+        return $response->getBody();
+        $res = json_decode($response->getBody());
     }
 }
