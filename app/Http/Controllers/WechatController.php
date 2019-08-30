@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Worker;
 use App\Workerlog;
+use App\WechatSession;
 
 class WechatController extends Controller
 {
@@ -16,9 +17,6 @@ class WechatController extends Controller
     }
     public function get_login()
     {
-        
-        // return request()->all();
-
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://api.weixin.qq.com/sns/jscode2session?',
             [
@@ -32,11 +30,14 @@ class WechatController extends Controller
         if($response->getStatusCode() == 200){
             
         }
-        return $response->getBody();
         $res = json_decode($response->getBody());
         if($res->session_key){
             $worker = Woker::where('wechat_openid',$res->openid)->first();
             if($worker){
+                WechatSession::create([
+                    'session_key' => $res->session_key,
+                    'wechat_openid' => $res->openid,
+                ]);
 //                        retrieve factory_name from db factories table with factory_id;
 //                    retrieve device list from devices table with factory_id;
 //
