@@ -46,6 +46,19 @@ class WechatController extends Controller
 //                    }else{//微信用户没有扫码上任何机器
 //                        return success with json data {"opeinid": , "factory_id": , "factory_name"：};
 //                    }
+                $data = [
+                    'session_key' => $res->session_key,
+                    'factory_id' => $worker->factory_id,
+                    'factory_name' => $worker->factory->name,
+                    'device_id' => null,
+                    'device_name' => null,
+                ];
+                return [
+                    'success' => true,
+                    'data' => $data,
+                    'message' => 'success',
+
+                ];
             } else {
                 return [
                     'success' => false,
