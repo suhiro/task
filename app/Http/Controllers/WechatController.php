@@ -34,7 +34,7 @@ class WechatController extends Controller
         }
         return $response->getBody();
         $res = json_decode($response->getBody());
-        if(!$res->errcode){
+        if($res->session_key){
             $worker = Woker::where('wechat_openid',$res->openid)->first();
             if($worker){
 //                        retrieve factory_name from db factories table with factory_id;

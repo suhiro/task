@@ -16,10 +16,10 @@ class CreateWorkersTable extends Migration
         Schema::create('workers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('factory_id');
-            $table->unsignedInteger('dsid');
-            $table->string('worker_name');
+//            $table->unsignedInteger('dsid')->nullable();
+            $table->string('name');
             $table->string('worker_id')->nullable();
-            $table->string('shenfengzheng_num');
+            $table->string('national_id');
             $table->string('wechat_openid');
             $table->timestamps();
         });
