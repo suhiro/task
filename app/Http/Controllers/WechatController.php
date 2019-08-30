@@ -23,6 +23,7 @@ class WechatController extends Controller
                 'query' => [
                     'appid' => env('WECHAT_APP_ID'),
                     'secret'=> env('WECHAT_SECRET'),
+                    'grant_type' => 'grant_type',
                     'js_code' => request()->login_code,
                 ],
             ]);
