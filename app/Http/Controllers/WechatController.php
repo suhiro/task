@@ -53,6 +53,7 @@ class WechatController extends Controller
                 $currentShift = ShiftLog::where('wechat_openid',$res->openid)->where('end',null)->first();
                 if($currentShift){
                     $data = [
+                        'on_shift' => true,
                       'open_id' => $currentShift->wechat_openid,
                       'factory_id' => $worker->factory_id,
                       'factory_name' => $worker->factory->name,
@@ -62,7 +63,16 @@ class WechatController extends Controller
                     ];
                     Log::info(json_encode($data));
                     return $data;
-                }
+                } else [
+                    $data = [
+                        'on_shift' => false,
+                        'open_id' => $res->openid,
+                        'factory_id' => $worker->factory_id,
+                        'factory_name' => $worker->factory->name,
+                    ];
+                Log::info(json_encode($data));
+                return $data;
+                ]
 
 //                    if(exist){//微信用户已经有扫码上机的记录
 //                        return success with json data {"opeinid": , "factory_id": , "factory_name"：, "device_id": , ”device_name“, "checkin_time": };
