@@ -11,6 +11,10 @@ class Factory extends Model
     {
         return $this->hasMany(Worker::class);
     }
+    public function devices()
+    {
+        return $this->hasMany(Device::class,'parent_id','dsid');
+    }
 
 
 }

@@ -61,6 +61,7 @@ class WechatController extends Controller
                     'factory_name' => $worker->factory->name,
                     'device_id' => null,
                     'device_name' => null,
+                    'devices' => $devices,
                 ];
                 return [
                     'success' => true,
