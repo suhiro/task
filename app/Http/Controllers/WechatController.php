@@ -32,9 +32,10 @@ class WechatController extends Controller
         if($response->getStatusCode() == 200){
             
         }
+        Log::info($response->getBody());
+        return $response->getBody();
         $res = json_decode($response->getBody());
-        Log::info($res);
-        return $res;
+
         if($res->session_key){
             $worker = Woker::where('wechat_openid',$res->openid)->first();
             if($worker){
