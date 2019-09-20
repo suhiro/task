@@ -36,7 +36,7 @@ class WechatController extends Controller
         $res = json_decode($response->getBody());
 
         if($res->session_key){
-            $worker = Woker::where('wechat_openid',$res->openid)->first();
+            $worker = Worker::where('wechat_openid',$res->openid)->first();
             if($worker){
                 WechatSession::create([
                     'session_key' => $res->session_key,
