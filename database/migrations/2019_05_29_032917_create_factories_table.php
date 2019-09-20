@@ -15,7 +15,8 @@ class CreateFactoriesTable extends Migration
     {
         Schema::create('factories', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('fp_id')->unique();
+            $table->unsignedInteger('account_id');
+            $table->unsignedInteger('dsid')->unique();
             $table->string('name');
             $table->string('description');
             $table->timestamps();

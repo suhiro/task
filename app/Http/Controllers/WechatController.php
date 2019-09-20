@@ -42,8 +42,12 @@ class WechatController extends Controller
                     'session_key' => $res->session_key,
                     'wechat_openid' => $res->openid,
                 ]);
+
 //                        retrieve factory_name from db factories table with factory_id;
 //                    retrieve device list from devices table with factory_id;
+                $devices = $worker->factory->devices;
+
+
 //
 //                    check if there are records of shift_logs;
 //                    if(exist){//微信用户已经有扫码上机的记录

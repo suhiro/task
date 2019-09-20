@@ -14,7 +14,8 @@ class FactoriesTableSeeder extends Seeder
     public function run()
     {
         DB::table('factories')->insert([
-        	'fp_id' => 1,
+            'account_id' => 1,
+        	'dsid' => 12520,
         	'name' => '第一工厂',
         	'description' => '高科技第一实验工厂',
         ]);

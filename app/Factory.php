@@ -11,4 +11,6 @@ class Factory extends Model
     {
         return $this->hasMany(Worker::class);
     }
+
+
 }
