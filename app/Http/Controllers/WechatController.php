@@ -63,7 +63,7 @@ class WechatController extends Controller
                     ];
                     Log::info(json_encode($data));
                     return $data;
-                } else [
+                } else {
                     $data = [
                         'on_shift' => false,
                         'open_id' => $res->openid,
@@ -72,7 +72,7 @@ class WechatController extends Controller
                     ];
                 Log::info(json_encode($data));
                 return $data;
-                ]
+                }
 
 //                    if(exist){//微信用户已经有扫码上机的记录
 //                        return success with json data {"opeinid": , "factory_id": , "factory_name"：, "device_id": , ”device_name“, "checkin_time": };
