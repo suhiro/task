@@ -33,7 +33,6 @@ class WechatController extends Controller
             
         }
         Log::info($response->getBody());
-        return $response->getBody();
         $res = json_decode($response->getBody());
 
         if($res->session_key){
@@ -73,7 +72,7 @@ class WechatController extends Controller
                 ];
             }
         } else {
-            return $res;
+            return $response->getBody();
         }
 
     }
