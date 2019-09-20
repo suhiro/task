@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Worker;
-use App\Workerlog;
+use App\ShiftLog;
 use App\WechatSession;
 
 class WechatController extends Controller
@@ -50,6 +50,20 @@ class WechatController extends Controller
 
 //
 //                    check if there are records of shift_logs;
+                $currentShift = ShiftLog::where('wechat_openid',$res->openid)->where('end',null)->first();
+                if($currentShift){
+                    $data = [
+                      'open_id' => $currentShift->wechat_openid,
+                      'factory_id' => $worker->factory_id,
+                      'factory_name' => $worker->factory->name,
+                        'device_id' => $currentShift->dsid,
+                        'device_name' => $currentShift->device->name,
+                        'check_in' => $currentShift->start,
+                    ];
+                    Log::info(json_encode($data));
+                    return $data;
+                }
+
 //                    if(exist){//微信用户已经有扫码上机的记录
 //                        return success with json data {"opeinid": , "factory_id": , "factory_name"：, "device_id": , ”device_name“, "checkin_time": };
 //                    }else{//微信用户没有扫码上任何机器
