@@ -63,6 +63,7 @@ class WechatController extends Controller
                     'device_name' => null,
                     'devices' => $devices,
                 ];
+                Log::info(json_encode($data));
                 return [
                     'success' => true,
                     'data' => $data,
