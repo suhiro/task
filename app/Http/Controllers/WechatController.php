@@ -33,6 +33,8 @@ class WechatController extends Controller
             
         }
         $res = json_decode($response->getBody());
+        Log::info($res);
+        return $res;
         if($res->session_key){
             $worker = Woker::where('wechat_openid',$res->openid)->first();
             if($worker){
