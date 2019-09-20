@@ -18,6 +18,7 @@ class WechatController extends Controller
     }
     public function get_login()
     {
+        Log::info('Someone trying to login via wechat');
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://api.weixin.qq.com/sns/jscode2session?',
             [
