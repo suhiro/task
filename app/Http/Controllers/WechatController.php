@@ -60,6 +60,7 @@ class WechatController extends Controller
                         'device_id' => $currentShift->dsid,
                         'device_name' => $currentShift->device->name,
                         'check_in' => $currentShift->start,
+                        'session_key' => $res->session_key,
                     ];
                     Log::info(json_encode($data));
                     return $data;
@@ -69,6 +70,7 @@ class WechatController extends Controller
                         'open_id' => $res->openid,
                         'factory_id' => $worker->factory_id,
                         'factory_name' => $worker->factory->name,
+                        'session_key' => $res->session_key,
                     ];
                 Log::info(json_encode($data));
                 return $data;
@@ -86,6 +88,7 @@ class WechatController extends Controller
                     'device_id' => null,
                     'device_name' => null,
                     'devices' => $devices,
+                    'session_key' => $res->session_key,
                 ];
                 Log::info(json_encode($data));
                 return [
@@ -99,6 +102,7 @@ class WechatController extends Controller
                     'success' => false,
                     'status' => 'error',
                     'message' => '当前微信用户尚未注册到任何工厂，请先联系人事部门注册',
+                    'session_key' => $res->session_key,
                 ];
             }
         } else {
